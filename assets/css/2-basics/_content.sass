@@ -1,0 +1,25 @@
+.boxes
+   +outer-container
+
+   .box
+      background: red
+      // margin-right: 0 !important
+      +span-columns(6)
+      margin-top: 2.35%
+      // width: 50%
+
+   .blue
+      background: blue
+   .yellow
+      background: violet
+   .green
+      background: pink
+
+.section #home
+   position: relative
+
+.hero-image
+   position: fixed
+   left: 50%
+   top: 50%
+   +transform(translate(-50%,-50%))

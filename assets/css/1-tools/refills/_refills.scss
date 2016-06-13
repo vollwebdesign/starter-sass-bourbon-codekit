@@ -1,0 +1,210 @@
+// accordion/tabs
+
+.accordion-tabs-minimal {
+  $base-border-color: #dcdcdc !default;
+  $base-background-color: transparent !default;
+  $base-spacing: 1.5em !default;
+  $action-color: #477dca !default;
+  $dark-gray: #333 !default;
+  $medium-screen: 40em !default;
+  $tab-border: 1px solid $base-border-color;
+  $tab-active-background: $base-background-color;
+  $tab-inactive-color: $base-background-color;
+  $tab-inactive-hover-color: #c0c0c0;
+  $tab-mode: $medium-screen;
+
+  @include clearfix;
+  line-height: 1.5;
+  padding: 0;
+
+  .tab-header-and-content {
+    list-style: none;
+
+    @include media($tab-mode) {
+      display: inline;
+    }
+  }
+
+  .tab-link {
+    background-color: $tab-inactive-color;
+    display: block;
+    padding-right: $gutter;
+    text-decoration: none;
+
+    @include media($tab-mode) {
+      border-top: 0;
+      display: inline-block;
+    }
+
+    &:hover {
+      color: $action-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.is-active {
+      border-bottom: 0;
+
+      @include media($tab-mode) {
+        margin-bottom: -1px;
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+    width: 100%;
+
+    @include media($tab-mode) {
+      float: left;
+    }
+  }
+}
+
+// tooltip
+
+.tooltip-item {
+  $base-border-color: gainsboro !default;
+  $base-border-radius: 3px !default;
+  $base-line-height: 1.5em !default;
+  $dark-gray: #333 !default;
+  $base-font-color: $dark-gray !default;
+  $tooltip-background: white;
+  $tooltip-color: $base-font-color;
+  $tooltip-max-width: 6em;
+  $tooltip-arrow-width: 8px;
+  $tooltip-shadow: 0 2px 2px silver;
+  $tooltip-distance-from-item: 3em;
+  $tooltip-arrow-distance-from-box: -1.3em;
+
+  display: inline-block;
+  position: relative;
+  text-align: center;
+
+  &:focus,
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .tooltip {
+    @include position(absolute, null 0 $tooltip-distance-from-item 0);
+    background-color: $tooltip-background;
+    background: #fff;
+    border-radius: $base-border-radius;
+    box-shadow: $tooltip-shadow;
+    color: $tooltip-color;
+    font-size: 0.4em; // Make sure you use -webkit-backface-visibility: hidden; on the body element to prevent 1px nudging bugs.
+    line-height: 1.5em;
+    margin: 0 auto;
+    max-width: $tooltip-max-width;
+    opacity: 0;
+    padding: .3em;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    visibility: hidden;
+    z-index: 10;
+
+    p {
+      color: $base-font-color;
+      line-height: $base-line-height;
+      margin: 0;
+    }
+
+    &::after {
+      @include position(absolute, null 0);
+      border: $tooltip-arrow-width solid transparent;
+      bottom: $tooltip-arrow-distance-from-box;
+      color: $tooltip-background;
+      content: "▼";
+      font-size: 1.1em;
+      margin-left: -$tooltip-arrow-width;
+      text-align: center;
+      text-shadow: $tooltip-shadow;
+    }
+  }
+}
+
+// parallax window
+
+$parallax-window-height: 40em;
+$parallax-background-height: $parallax-window-height * 1.2;
+
+.parallax-window {
+   max-height: $parallax-window-height;
+   overflow: hidden;
+   position: relative;
+   text-align: center;
+   width: 100%;
+   margin: 20px 0;
+}
+
+.parallax-static-content {
+  color: #9A9A8A;
+  padding: 20em 0;
+  position: relative;
+  z-index: 0;
+}
+
+.parallax-background {
+  background: url("/assets/img/salon-outside.jpg") repeat;
+  background-position: top;
+  background-size: cover;
+  background-color: beige;
+  height: $parallax-background-height;
+  left: 0;
+  position: absolute;
+  top: - $parallax-window-height / 3;
+  width: 100%;
+}
+
+// expander
+.expander {
+  $base-font-size: 1em !default;
+  $base-line-height: 1.5em !default;
+  $base-spacing: 1.5em !default;
+  $action-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $base-font-color: $dark-gray !default;
+  $expander-arrow-width: 0.7em;
+  $expander-toggle-size: 1em;
+  $expander-toggle-arrow-size: $expander-toggle-size;
+  $expander-toggle-margin: 1em;
+
+  .expander-trigger {
+   //  border-bottom: 1px solid $light-gray;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: $expander-toggle-size;
+   //  margin-bottom: $expander-toggle-size;
+   //  padding-bottom: $expander-toggle-size / 4;
+    text-decoration: underline;
+    user-select: none;
+
+   //  &::before {
+   //    content: "\25BC";
+   //    font-size: $expander-arrow-width;
+   //    margin-right: 0.5em;
+   //  }
+  }
+
+  .expander-content p {
+    color: #fff;
+    line-height: $base-line-height;
+  }
+
+  // .expander-hidden {
+  //   &::before {
+  //     content: "\25BA";
+  //     font-size: $expander-arrow-width;
+  //   }
+  //}
+
+  .expander-hidden + .expander-content {
+    display: none;
+  }
+}
